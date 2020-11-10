@@ -1,10 +1,11 @@
 const initItems = (items) => {
-  items.map((item) => {
+  return items.map(function (item) {
     return {
       ...item,
       quantity: 0,
-      enabled: false,
-      actualPrice: () => item.initial_price * item.quantity * item.multiplier,
+      actualPrice: () => this.initial_price * this.quantity * this.multiplier,
+      enabled: (cookies) =>
+        this.quantity * this.initial_price * this.multiplier >= cookies,
     };
   });
 };

@@ -1,10 +1,10 @@
 const { ItemsListStyled } = require("../../styles/ItemsStyled");
 const { default: Item } = require("./Item");
 
-const ItemsList = ({ items }) => (
+const ItemsList = ({ items, cookies, setItems }) => (
   <ItemsListStyled>
     {items.map((item) => (
-      <Item item={item} />
+      <Item item={item} cookies={cookies} items={items} setItems={setItems} />
     ))}
   </ItemsListStyled>
 );
