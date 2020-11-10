@@ -22,6 +22,20 @@ export const ItemStyled = styled.div`
   }
 `;
 
+export const Badge = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  justify-self: flex-end;
+  right: 0;
+  width: 60px !important;
+  height: 60px !important;
+  background-color: red;
+  border-radius: 30px;
+  color: white;
+`;
+
 export const ItemImage = styled.img`
   margin-left: 44px;
   width: 88px;

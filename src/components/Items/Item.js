@@ -3,12 +3,13 @@ const {
   ItemStyled,
   ItemImage,
   ItemDescription,
+  Badge,
 } = require("../../styles/ItemsStyled");
 const Item = ({ item }) => {
   const [hovered, setHovered] = useState(false);
   return (
     <ItemStyled
-      enabled={item.enabled}
+      enabled={true}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -17,6 +18,7 @@ const Item = ({ item }) => {
         <h3>Grandma</h3>
         <p> She makes cookie!</p>
       </ItemDescription>
+      <Badge>5</Badge>
     </ItemStyled>
   );
 };
