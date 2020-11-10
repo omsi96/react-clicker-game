@@ -3,11 +3,9 @@ import svgs from '../assets/svgs'
 const CookieClick = ({ setCookie, cookie }) => {
   return (
     <div>
-      <Button onClick={() => setCookie(cookie + 1)}>
-        <img src='svgs.cookie' alt='' />
-        {/* <p> */}
-        {cookie}
-        {/* </p> */}
+      <Button>
+        <img src={svgs.cookie} alt='' />
+        <label> {cookie}</label>
       </Button>
     </div>
   )

@@ -1,13 +1,13 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Body = styled.body`
   display: flex;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background: url("../assets/farm.jpg");
+  background: url('../assets/farm.jpg');
   justify-content: space-between;
-`;
+`
 export const EdgeSection = styled.div`
   width: 30%;
   height: 100vh;
@@ -15,7 +15,7 @@ export const EdgeSection = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
+`
 
 export const CenterSection = styled.div`
   width: 40%;
@@ -24,4 +24,20 @@ export const CenterSection = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
+`
+export const Img = styled.img`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  width: 300px;
+  height: 300px;
+
+  &.cookieHover:hover {
+    transform: scale(1.1);
+    transition: 150ms;
+    /* opacity: 0.9; */
+    /* transform: translateY(4px); */
+  }
+  transition: 150ms;
+`
