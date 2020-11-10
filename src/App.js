@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import { Body, CenterSection, EdgeSection } from "./styles/themes";
+import CookieClick from "./components/CookieClick";
+import itemsData from "./data/Items.json";
+import ItemsList from "./components/Items/ItemsList";
+import svgs from "./assets/svgs";
+import initItems from "./controllers/ItemsController";
 
 function App() {
+  const [cookie, setCookie] = useState(0);
+  const [items, setItems] = useState(itemsData);
+  const [cookiesPS, setCookiesPS] = useState(0);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Body>
+      <CookieClick setCookie={setCookie} cookie={cookie} />
+      <p style={{ textAlign: "center", fontSize: "33px" }}>
+        <img
+          src={svgs.cookie}
+          alt="a cookie chip"
+          width="300px"
+          height="300px"
+        />
+      </p>
+
+      {/* passing items here will be temporary, 
+      later on we'll pass the state that keeps track of the active items */}
+      <ItemsList items={items} />
+    </Body>
   );
 }
 
