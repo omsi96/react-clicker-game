@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const ItemStyled = styled.div`
   display: flex;
@@ -11,14 +11,19 @@ export const ItemStyled = styled.div`
   margin: 30px;
   width: 180px;
   height: 180px;
-`;
+  transition: 25ms all;
+
+  &:hover {
+    width: 400px;
+  }
+`
 
 export const ItemImage = styled.img`
   width: 50%;
-`;
+`
 
 export const ItemsListStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
+`
