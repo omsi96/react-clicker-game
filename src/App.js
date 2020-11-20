@@ -12,9 +12,8 @@ const App = () => {
   const [items, setItems] = useState(initItems(itemsData));
   const [cookiesPS, setCookiesPS] = useState(1);
 
-  // There is an issue here with the timer. For each click, the timer resets.
   useEffect(() => {
-    const INTERVAL = 100;
+    const INTERVAL = 2000;
     const cookiesPerMS = cookiesPS / 1000;
     const cookiesPerInterval = cookiesPerMS * INTERVAL;
     const timer = setInterval(() => {
