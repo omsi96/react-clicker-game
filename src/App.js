@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Body, CenterSection, EdgeSection, Img } from "./styles/themes";
 import CookieClick from "./components/CookieClick";
 import itemsData from "./data/Items.json";
@@ -11,17 +11,30 @@ const App = () => {
   const [cookie, setCookie] = useState(0);
   const [items, setItems] = useState(initItems(itemsData));
   const [cookiesPS, setCookiesPS] = useState(1);
+  const ref = useRef(null);
+  const INTERVAL = 100;
 
   // There is an issue here with the timer. For each click, the timer resets.
   useEffect(() => {
-    const INTERVAL = 100;
+    function callCookieMaker() {
+      ref.current();
+    }
+
+    const timer = setInterval(callCookieMaker, INTERVAL);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  function cookieMaker() {
     const cookiesPerMS = cookiesPS / 1000;
     const cookiesPerInterval = cookiesPerMS * INTERVAL;
-    const timer = setInterval(() => {
-      setCookie((cookies) => cookies + cookiesPerInterval);
-    }, INTERVAL);
-    return () => clearTimeout(timer);
-  }, [cookiesPS]);
+    setCookie((cookies) => cookies + cookiesPerInterval);
+  }
+
+  // because we want the props and state to be fresh for this render
+  useEffect(() => {
+    ref.current = cookieMaker;
+  });
 
   return (
     <Body>
@@ -30,7 +43,7 @@ const App = () => {
         onClick={() => setCookie(cookie + 1)}
         style={{ textAlign: 'center', fontSize: '33px' }}> */}
       <Img
-        onClick={() => setCookie(cookie + 1)}
+        onClick={() => setCookie(cookie + 1000)}
         src={svgs.cookie}
         alt="a cookie chip"
         className="cookieHover"
