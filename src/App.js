@@ -13,7 +13,7 @@ const App = () => {
   const [cookiesPS, setCookiesPS] = useState(1);
 
   useEffect(() => {
-    const INTERVAL = 2000;
+    const INTERVAL = 100;
     const cookiesPerMS = cookiesPS / 1000;
     const cookiesPerInterval = cookiesPerMS * INTERVAL;
     const timer = setInterval(() => {
