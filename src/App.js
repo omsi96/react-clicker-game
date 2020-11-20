@@ -10,29 +10,22 @@ import initItems from "./controllers/ItemsController";
 const App = () => {
   const [cookie, setCookie] = useState(0);
   const [items, setItems] = useState(initItems(itemsData));
-  const [cookiesPS, setCookiesPS] = useState(0);
+  const [cookiesPS, setCookiesPS] = useState(1);
 
   // There is an issue here with the timer. For each click, the timer resets.
   useEffect(() => {
-    const currentCPS = items.reduce((acc, val) => {
-      return acc.quantity + val.quantity;
-    }, 0);
-    console.log("CURRENT CPS", currentCPS);
-
-    let timeRate = 1000;
+    const INTERVAL = 100;
+    const cookiesPerMS = cookiesPS / 1000;
+    const cookiesPerInterval = cookiesPerMS * INTERVAL;
     const timer = setInterval(() => {
-      console.log("Hello, we have ", cookie, " # of cookies");
-      const newCookies = cookie + (cookiesPS * timeRate) / 1000;
-      setCookie(newCookies);
-    }, timeRate);
-    console.log("You orderd ", cookie, " number of cookies");
-
+      setCookie((cookies) => cookies + cookiesPerInterval);
+    }, INTERVAL);
     return () => clearTimeout(timer);
-  });
+  }, [cookiesPS]);
 
   return (
     <Body>
-      <CookieClick setCookie={setCookie} cookie={cookie} />
+      <CookieClick cps={cookiesPS} cookie={cookie} />
       {/* <span
         onClick={() => setCookie(cookie + 1)}
         style={{ textAlign: 'center', fontSize: '33px' }}> */}
@@ -41,11 +34,17 @@ const App = () => {
         src={svgs.cookie}
         alt="a cookie chip"
         className="cookieHover"
+        draggable={false}
       />
 
-      {/* passing items here will be temporary, 
-      later on we'll pass the state that keeps track of the active items */}
-      <ItemsList items={items} cookies={cookie} setItems={setItems} />
+      {/* Items list ig getting item and set items so it can update the items if you click on one of them and try to increment number of items. */}
+      <ItemsList
+        items={items}
+        cookies={cookie}
+        setItems={setItems}
+        setCookiesPS={setCookiesPS}
+        setCookies={setCookie}
+      />
     </Body>
   );
 };

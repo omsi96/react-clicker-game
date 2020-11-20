@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const ItemStyled = styled.div`
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: flex-start;
   background: #fff;
@@ -20,20 +21,27 @@ export const ItemStyled = styled.div`
     transition-timing-function: ease-in-out;
     cursor: pointer;
   }
+  /* Disable selection, didn't work though*/
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;
 
 export const Badge = styled.span`
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  align-self: center;
   justify-self: flex-end;
+  top: 0pc;
   right: 0;
   width: 60px !important;
   height: 60px !important;
   background-color: red;
   border-radius: 30px;
   color: white;
+  font-weight: 900;
 `;
 
 export const ItemImage = styled.img`
