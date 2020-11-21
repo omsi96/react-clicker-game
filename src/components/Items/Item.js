@@ -10,13 +10,8 @@ const Item = ({ item, cookies, setItems, items, setCookiesPS, setCookies }) => {
   const [hovered, setHovered] = useState(false);
 
   const incrementCookiesPS = () => {
-    const price = itemPrice();
-    console.log("Price", price, "Cookies", cookies);
     if (itemAvailable) {
-      // You can't use this way
-      console.log("Old item:", item);
       let newItem = { ...item, quantity: item.quantity + 1 };
-      console.log("new item:", newItem);
       let newItems = items.map((f) => {
         return f.name === item.name ? newItem : f;
       });
@@ -30,7 +25,7 @@ const Item = ({ item, cookies, setItems, items, setCookiesPS, setCookies }) => {
     const price =
       item.initial_price *
       (item.quantity > 0 ? item.quantity * item.multiplier : 1);
-    console.log("item price is", item, price);
+    // console.log("item price is", item, price);
     return price;
   };
   const itemAvailable = cookies > itemPrice();

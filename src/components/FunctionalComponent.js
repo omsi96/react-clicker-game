@@ -19,7 +19,7 @@ const FuncCompoent = () => {
   // runs on unmounting
 
   useEffect(() => {
-    console.log("Hello World!");
+    // console.log("Hello World!");
     return () => {
       // clean up
     };

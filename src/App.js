@@ -1,26 +1,37 @@
 import "./App.css";
-import { useEffect, useState } from "react";
-import { Body, CenterSection, EdgeSection, Img } from "./styles/themes";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Body, Img } from "./styles/themes";
 import CookieClick from "./components/CookieClick";
 import itemsData from "./data/Items.json";
 import ItemsList from "./components/Items/ItemsList";
 import svgs from "./assets/svgs";
 import initItems from "./controllers/ItemsController";
 
+const INTERVAL = 1000;
+
 const App = () => {
   const [cookie, setCookie] = useState(0);
   const [items, setItems] = useState(initItems(itemsData));
   const [cookiesPS, setCookiesPS] = useState(1);
+  const ref = useRef(null); //now you can pass timer to another component
 
   useEffect(() => {
-    const INTERVAL = 100;
-    const cookiesPerMS = cookiesPS / 1000;
-    const cookiesPerInterval = cookiesPerMS * INTERVAL;
-    const timer = setInterval(() => {
+    const timer = setInterval(() => ref.current(), INTERVAL);
+    return () => {
+      clearTimeout(timer);
+      console.log("I AM RESETTING THE TIMER!!");
+    };
+  }, []);
+
+  // This will attach the ref to increment CookiesPerInterval, which has
+  useEffect(() => {
+    let incrementCookiesPerInterval = () => {
+      const cookiesPerMS = cookiesPS / 1000;
+      const cookiesPerInterval = cookiesPerMS * INTERVAL;
       setCookie((cookies) => cookies + cookiesPerInterval);
-    }, INTERVAL);
-    return () => clearTimeout(timer);
-  }, [cookiesPS]);
+    };
+    ref.current = incrementCookiesPerInterval;
+  });
 
   return (
     <Body>
