@@ -1,6 +1,8 @@
 import "./App.css";
+
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Body, Img } from "./styles/themes";
+
 import CookieClick from "./components/CookieClick";
 import itemsData from "./data/Items.json";
 import ItemsList from "./components/Items/ItemsList";
@@ -13,6 +15,7 @@ const App = () => {
   const [cookie, setCookie] = useState(0);
   const [items, setItems] = useState(initItems(itemsData));
   const [cookiesPS, setCookiesPS] = useState(1);
+
   const ref = useRef(null); //now you can pass timer to another component
 
   useEffect(() => {
@@ -23,6 +26,7 @@ const App = () => {
     };
   }, []);
 
+
   // This will attach the ref to increment CookiesPerInterval, which has
   useEffect(() => {
     let incrementCookiesPerInterval = () => {
@@ -31,7 +35,7 @@ const App = () => {
       setCookie((cookies) => cookies + cookiesPerInterval);
     };
     ref.current = incrementCookiesPerInterval;
-  });
+
 
   return (
     <Body>
@@ -40,7 +44,7 @@ const App = () => {
         onClick={() => setCookie(cookie + 1)}
         style={{ textAlign: 'center', fontSize: '33px' }}> */}
       <Img
-        onClick={() => setCookie(cookie + 1)}
+        onClick={() => setCookie(cookie + 1000)}
         src={svgs.cookie}
         alt="a cookie chip"
         className="cookieHover"
