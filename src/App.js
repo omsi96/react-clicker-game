@@ -26,7 +26,6 @@ const App = () => {
     };
   }, []);
 
-
   // This will attach the ref to increment CookiesPerInterval, which has
   useEffect(() => {
     let incrementCookiesPerInterval = () => {
@@ -35,8 +34,7 @@ const App = () => {
       setCookie((cookies) => cookies + cookiesPerInterval);
     };
     ref.current = incrementCookiesPerInterval;
-
-
+  });
   return (
     <Body>
       <CookieClick cps={cookiesPS} cookie={cookie} />
@@ -44,7 +42,7 @@ const App = () => {
         onClick={() => setCookie(cookie + 1)}
         style={{ textAlign: 'center', fontSize: '33px' }}> */}
       <Img
-        onClick={() => setCookie(cookie + 1000)}
+        onClick={() => setCookie(cookie + 1)}
         src={svgs.cookie}
         alt="a cookie chip"
         className="cookieHover"
