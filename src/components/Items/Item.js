@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import svgs from "../../assets/svgs";
+import abbreviateNumber from "../../helper";
 const {
   ItemStyled,
   ItemImage,
@@ -47,11 +48,13 @@ const Item = ({ item, cookies, setItems, items, setCookiesPS, setCookies }) => {
       <ItemImage src={item.img} />
       <ItemDescription hovered={hovered}>
         <h3>{item.enabled()}</h3>
-        <p>{`${item.name} is providing ${Math.floor(
-          item.quantity * item.cps
+        <p>{item.description}</p>
+        <p>{`Produces ${Math.floor(item.cps)} cps`}</p>
+        <p>{`Currently producing ${Math.floor(
+          item.cps * item.quantity
         )} cps`}</p>
         <p style={{ position: "relative" }}>
-          {`Next ${item.name} price: ${itemPrice()}`}
+          {`Price: ${abbreviateNumber(Math.floor(itemPrice()))}`}
           <img
             src={svgs.cookie}
             style={{ height: 17, margin: 3, position: "absolute", top: -2 }}
@@ -64,4 +67,5 @@ const Item = ({ item, cookies, setItems, items, setCookiesPS, setCookies }) => {
     </ItemStyled>
   );
 };
+
 export default Item;

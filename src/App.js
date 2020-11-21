@@ -32,15 +32,13 @@ const App = () => {
       const cookiesPerMS = cookiesPS / 1000;
       const cookiesPerInterval = cookiesPerMS * INTERVAL;
       setCookie((cookies) => cookies + cookiesPerInterval);
+      document.title = `Cookies ${cookie === 0 ? "" : cookie}`;
     };
     ref.current = incrementCookiesPerInterval;
   });
   return (
     <Body>
       <CookieClick cps={cookiesPS} cookie={cookie} />
-      {/* <span
-        onClick={() => setCookie(cookie + 1)}
-        style={{ textAlign: 'center', fontSize: '33px' }}> */}
       <Img
         onClick={() => setCookie(cookie + 1)}
         src={svgs.cookie}
